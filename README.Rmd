@@ -54,7 +54,7 @@ Then the library can be loaded as normal
 
 ```{r load_rlpi, eval=TRUE}
 # Load library
-library(rlpi)
+library(rlpi_tw)
 ```
 
 And some example data can be extracted from the package:

@@ -13,7 +13,7 @@ The code also provides a means to create infiles from tabular population data su
 ```r
 # Get example data from package
 # Copy zipped data to local directory 
-file.copy(from=system.file("extdata", "example_data.zip", package = "rlpi"), to=getwd())
+file.copy(from=system.file("extdata", "example_data.zip", package = "rlpi_tw"), to=getwd())
 # Extract data, this will create a directory of terrestrial LPI data to construct a terrestrial index from.
 unzip("example_data.zip")
 ```

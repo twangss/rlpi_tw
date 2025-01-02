@@ -91,7 +91,7 @@ ggplot_lpi_multi(list(lpi_global, lpi_tropical), names=c("global", "tropical"))
 
 # Get example data from package
 # Copy zipped data to local directory
-file.copy(from=system.file("extdata", "example_data.zip", package = "rlpi"), to=".")
+file.copy(from=system.file("extdata", "example_data.zip", package = "rlpi_tw"), to=".")
 unzip("example_data.zip")
 
 # Terrestrial LPI with equal weighting across classes and realms
