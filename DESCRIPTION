@@ -11,7 +11,7 @@ Authors@R: c(
   )
 Maintainer: Robin Freeman <robin.freeman@ioz.ac.uk>
 Description: This package brings together the functions neccessary for calculating and plotting indices using the Living Planet Index method (see www.livingplanetindex.org).
-URL: https://github.com/Zoological-Society-of-London/living_planet_index
+URL: https://github.com/twangss/rlpi_tw
 BugReports: https://github.com/Zoological-Society-of-London/living_planet_index/issues
 License: GPL-2
 LazyData: TRUE
