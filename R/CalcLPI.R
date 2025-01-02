@@ -118,7 +118,7 @@ CalcLPI <- function(Species,
           if (length(IndexZero) > 0) {
             OffsetVal = 1e-17
             PopN = PopN + OffsetVal
-          } else {  
+          } else {
             PopN <- PopN
           }
         } else if (OFFSET_DIFF){
@@ -435,9 +435,9 @@ CalcLPI <- function(Species,
           if (length(IndexTemp) > 0) {
             # Then set species lambda to be their average...
             if (CAP_LAMBDAS) {
-              SpeciesLambda[I, K] = mean(c(PopLambdaTemp1[IndexTemp], rep(LAMBDA_MAX, length(IndexTempBad_max)), rep(LAMBDA_MIN, length(IndexTempBad_min))))
+              SpeciesLambda[I, K] = median(c(PopLambdaTemp1[IndexTemp], rep(LAMBDA_MAX, length(IndexTempBad_max)), rep(LAMBDA_MIN, length(IndexTempBad_min))))
             } else {
-              SpeciesLambda[I, K] = mean(PopLambdaTemp1[IndexTemp])
+              SpeciesLambda[I, K] = median(PopLambdaTemp1[IndexTemp])
             }
           } else {
             # Otherwise, if we have lambdas less than our max, but not more then min, set sp. av. to be NA

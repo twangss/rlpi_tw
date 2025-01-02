@@ -138,7 +138,7 @@ ProcessFile <-function(DatasetName,
     # If there are some populations
     if (length(Index) > 0) {
       # DTemp is mean lambda for those populations
-      DTemp[I] = mean(YearData[Index])
+      DTemp[I] = median(YearData[Index])
       # Otherwise -99
     } else DTemp[I] = -99
   }

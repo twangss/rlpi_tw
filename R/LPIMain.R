@@ -497,7 +497,7 @@ LPIMain <- function(infile="Infile.txt",
 
                   Index = which(BootVal != -1)
                   if (length(Index) > 0) {
-                    DTemp[LoopI] = mean(BootVal[Index])
+                    DTemp[LoopI] = median(BootVal[Index]) # maybe not median got back to mean? TW
                   } else DTemp[LoopI] = -99
                 }
 

@@ -70,9 +70,9 @@ calc_leverage_lpi <- function(SpeciesLambdaArray, fileindex, DSize, Group, Weigh
         if (length(Index) > 0) {
 
           if (use_weightings) {
-            D[GroupNo] = D[GroupNo] + mean(SpeciesLambdaVal[Index])*Weightings[[1]][FileNo]
+            D[GroupNo] = D[GroupNo] + median(SpeciesLambdaVal[Index])*Weightings[[1]][FileNo]
           } else {
-            D[GroupNo] = D[GroupNo] + mean(SpeciesLambdaVal[Index])
+            D[GroupNo] = D[GroupNo] + median(SpeciesLambdaVal[Index])
           }
 
           DI[GroupNo] = DI[GroupNo] + 1
