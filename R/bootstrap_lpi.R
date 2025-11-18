@@ -58,9 +58,9 @@ bootstrap_lpi <- function(SpeciesLambdaArray, fileindex, DSize, Group, Weighting
           #D[Group[FileNo, 1]] = D[Group[FileNo, 1]] + mean(BootVal[Index])
 
           if (use_weightings) {
-            D[GroupNo] = D[GroupNo] + mean(BootVal[Index])*Weightings[[1]][FileNo]
+            D[GroupNo] = D[GroupNo] + median(BootVal[Index])*Weightings[[1]][FileNo]
           } else {
-            D[GroupNo] = D[GroupNo] + mean(BootVal[Index])
+            D[GroupNo] = D[GroupNo] + median(BootVal[Index])
           }
 
           DI[GroupNo] = DI[GroupNo] + 1
