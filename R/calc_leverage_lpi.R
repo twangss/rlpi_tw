@@ -31,7 +31,8 @@ calc_lambdas <- function(lpi) {
 #' @return Returns an index
 #' @export
 #'
-calc_leverage_lpi <- function(SpeciesLambdaArray, fileindex, DSize, Group, Weightings, use_weightings, use_weightings_B, WeightingsB) {
+calc_leverage_lpi <- function(SpeciesLambdaArray, fileindex, DSize, Group, Weightings, use_weightings, use_weightings_B, WeightingsB,
+                              MIN_SPECIES_PER_YEAR) {
 
   NoFiles = length(unique(fileindex))
   NoGroups = length(unique(Group[[1]]))
@@ -67,7 +68,7 @@ calc_leverage_lpi <- function(SpeciesLambdaArray, fileindex, DSize, Group, Weigh
         SpeciesLambdaVal = SpeciesLambdaVal[!is.na(SpeciesLambdaVal)]
         # If we've got some meaningful data
         Index = which(SpeciesLambdaVal != -1)
-        if (length(Index) > 0) {
+        if (length(Index) >=  MIN_SPECIES_PER_YEAR) {
 
           if (use_weightings) {
             D[GroupNo] = D[GroupNo] + mean(SpeciesLambdaVal[Index])*Weightings[[1]][FileNo]

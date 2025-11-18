@@ -42,6 +42,7 @@
 #' @param OFFSET_NONE
 #' @param OFFSET_DIFF
 #' @param LINEAR_MODEL_SHORT_FLAG
+#' @param MIN_SPECIES_PER_YEAR - Minimum number of species for annual aggregated lambda calculations
 #' @param VERBOSE - Whether to print verbose information. Default=1
 #' @return lpi - A data frame containing an LPI and CIs if calculated
 #' @examples
@@ -105,6 +106,7 @@ LPIMain <- function(infile="Infile.txt",
                     OFFSET_DIFF = FALSE, # Offset time-series with 0 values adding 1% of mean if max value in time-series<1 and 1 if max>=1
                     LINEAR_MODEL_SHORT_FLAG = FALSE, # if=TRUE models short time-series with linear model
                     CAP_LAMBDAS = TRUE,
+                    MIN_SPECIES_PER_YEAR = 1, # Default is 1 species
                     VERBOSE = TRUE,
                     SHOW_PROGRESS=TRUE) {
 
@@ -215,6 +217,7 @@ LPIMain <- function(infile="Infile.txt",
                     OFFSET_DIFF=OFFSET_DIFF,
                     LINEAR_MODEL_SHORT_FLAG=LINEAR_MODEL_SHORT_FLAG,
                     CAP_LAMBDAS=CAP_LAMBDAS,
+                    MIN_SPECIES_PER_YEAR = MIN_SPECIES_PER_YEAR,
                     SHOW_PROGRESS=SHOW_PROGRESS,
                     basedir=basedir)
         #cat("done processing file: ", toString(FileNames[FileNo]))
@@ -358,7 +361,8 @@ LPIMain <- function(infile="Infile.txt",
         BootI <- foreach::foreach (Loop = 1:BOOT_STRAP_SIZE) %op% {
           #sink("progress_log_boot.txt", append=TRUE)
           #bootstrap_lpi(SpeciesLambdaArray, fileindex, DSize, Group, Weightings, use_weightings)
-          bootstrap_lpi(SpeciesLambdaArray, fileindex, DSize, Group, Weightings, use_weightings, use_weightings_B, WeightingsB, CAP_LAMBDAS)
+          bootstrap_lpi(SpeciesLambdaArray, fileindex, DSize, Group, Weightings, use_weightings, use_weightings_B, WeightingsB, CAP_LAMBDAS,
+                        MIN_SPECIES_PER_YEAR)
           #sink()
         }
         cat("\n")
@@ -424,7 +428,8 @@ LPIMain <- function(infile="Infile.txt",
       for (i in 1:nrow(SpeciesLambdaArray)) {
 
         #SpeciesLambdaArray = SpeciesLambdaArray[-i, ]
-        lev_I = calc_leverage_lpi(SpeciesLambdaArray[-i, ], fileindex, DSize, Group, Weightings, use_weightings, use_weightings_B, WeightingsB)
+        lev_I = calc_leverage_lpi(SpeciesLambdaArray[-i, ], fileindex, DSize, Group, Weightings, use_weightings, use_weightings_B, WeightingsB,
+                                  MIN_SPECIES_PER_YEAR)
 
         leverage_results[[i]] = lev_I
         leverage_diff[[i]] = calc_lambdas(lev_I) - overall_lambdas

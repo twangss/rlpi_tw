@@ -13,7 +13,8 @@
 #' @return Returns a bootstrapped LPI
 #' @export
 #'
-bootstrap_lpi <- function(SpeciesLambdaArray, fileindex, DSize, Group, Weightings, use_weightings, use_weightings_B, WeightingsB, CAP_LAMBDAS) {
+bootstrap_lpi <- function(SpeciesLambdaArray, fileindex, DSize, Group, Weightings, use_weightings, use_weightings_B, WeightingsB, CAP_LAMBDAS,
+                          MIN_SPECIES_PER_YEAR) {
 
   NoFiles = length(unique(fileindex))
   NoGroups = length(unique(Group[[1]]))
@@ -52,7 +53,7 @@ bootstrap_lpi <- function(SpeciesLambdaArray, fileindex, DSize, Group, Weighting
         } else {
           Index = which(!is.na(BootVal))
         }
-        if (length(Index) > 0) {
+        if (length(Index) >= MIN_SPECIES_PER_YEAR) {
 
           # Store sum of mean lamdas in D (summing over species within group)
           #D[Group[FileNo, 1]] = D[Group[FileNo, 1]] + mean(BootVal[Index])

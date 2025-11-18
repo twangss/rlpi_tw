@@ -34,6 +34,7 @@ ProcessFile <-function(DatasetName,
                        OFFSET_DIFF,
                        LINEAR_MODEL_SHORT_FLAG,
                        CAP_LAMBDAS,
+                       MIN_SPECIES_PER_YEAR,
                        SHOW_PROGRESS,
                        basedir) {
 
@@ -136,7 +137,7 @@ ProcessFile <-function(DatasetName,
     }
 
     # If there are some populations
-    if (length(Index) > 0) {
+    if (length(Index) >= MIN_SPECIES_PER_YEAR) {
       # DTemp is mean lambda for those populations
       DTemp[I] = median(YearData[Index])
       # Otherwise -99
