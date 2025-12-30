@@ -361,7 +361,7 @@ LPIMain <- function(infile="Infile.txt",
         BootI <- foreach::foreach (Loop = 1:BOOT_STRAP_SIZE) %op% {
           #sink("progress_log_boot.txt", append=TRUE)
           #bootstrap_lpi(SpeciesLambdaArray, fileindex, DSize, Group, Weightings, use_weightings)
-          bootstrap_lpi(SpeciesLambdaArray, fileindex, DSize, Group, Weightings, use_weightings, use_weightings_B, WeightingsB, CAP_LAMBDAS,
+          bootstrap_lpi_citation(SpeciesLambdaArray, fileindex, DSize, Group, Weightings, use_weightings, use_weightings_B, WeightingsB, CAP_LAMBDAS,
                         MIN_SPECIES_PER_YEAR)
           #sink()
         }
