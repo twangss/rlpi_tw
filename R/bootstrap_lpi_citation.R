@@ -26,9 +26,10 @@ bootstrap_lpi_citation <- function(SpeciesLambdaArray, fileindex, DSize, Group, 
 
   cat(".")
 
+  resampled_files <- sample(unique_files, size = NoFiles, replace = TRUE)
   # For each year
   for (J in 2:DSize) {
-    resampled_files <- sample(unique_files, size = NoFiles, replace = TRUE)
+
     # Make two matrices of 0s of size 1xNoGroups
     D = matrix(0, 1, NoGroups)
     DI = matrix(0, 1, NoGroups)
